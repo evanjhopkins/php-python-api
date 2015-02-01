@@ -6,13 +6,35 @@ include 'phyth.php';
 <hr>
 
 <h3>Testing error handling</h3>
-Request: {"cmd":"reverse","data":"jj"}<br>
-<?php echo "Response: ".callPhyth('{"cmd":"reverse","data":"jj"}'); ?>
+<table border="1">
+<tr><td>Request:</td><td>{"cmd":"reverse","data":"should fail"}</td></tr>
+<?php 
+$response = callPhyth('{"cmd":"reverse","data":"should fail"}');
+$response = str_replace("'", '"', $response);
+$response_obj = json_decode($response);
+if($response_obj->error==""){
+	echo "<tr><td>Response:</td><td bgcolor='DE8686'>".$response."</td></tr>"; 
+}else{
+	echo "<tr><td>Response:</td><td bgcolor='86DE8C'>".$response."</td></tr>"; 
+}
+?>
+</table>
 <hr>
 
-<h3>Testing reverse string</h3>
-Request: {"cmd":"reverse","data":{"string":"should throw error"}}<br>
-<?php echo "Response: ".callPhyth('{"cmd":"reverse","data":{"string":"should throw error"}}'); ?>
+<h3>Testing reverse</h3>
+<table border="1">
+<tr><td>Request:</td><td>{"cmd":"reverse","data":{"string":"should throw error"}}</td></tr>
+<?php 
+$response = callPhyth('{"cmd":"reverse","data":{"string":"should reverse this"}}');
+$response = str_replace("'", '"', $response);
+$response_obj = json_decode($response);
+if($response_obj->error!="" || $response_obj->data->new_string==""){
+	echo "<tr><td>Response:</td><td bgcolor='DE8686'>".$response."</td></tr>"; 
+}else{
+	echo "<tr><td>Response:</td><td bgcolor='86DE8C'>".$response."</td></tr>"; 
+}
+?>
+</table>
 <hr>
 
 <a href="https://github.com/evanjhopkins/php-python-api">Github</a>
