@@ -1,10 +1,8 @@
-import sys
-import json
+import phyth
 
 def main():
-	json_data = sys.argv[1];
-	data = json.loads(json_data)
-	print data['data']['string'][::-1]
+	data = phyth.getData()
+	print data['string'][::-1]
 
 if __name__ == "__main__":
     main()
