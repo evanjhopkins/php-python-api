@@ -12,8 +12,8 @@ def logError(error):
 	log.write(error)
 	log.close()
 
-def respond(data_dict):
-	reply_data = { 'data': data_dict,'error': '' }
+def respond(data_dict, error):
+	reply_data = { 'data': data_dict,'error': error }
 	print reply_data
 
 
