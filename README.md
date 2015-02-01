@@ -13,3 +13,16 @@ To call an api function, send a post or get request to phyth.php. The request sh
     }                           |
   }                             |
 ```
+
+To add an api function, you must add a new python file to the modules folder. The file should be in the folling format:
+
+```python
+import phyth                    # Contains global phyth functions, such as getData()
+                                #
+def main():                     # 
+	data = phyth.getData()        # Fetches dictionary of data passed from the get/post request
+	print data['string'][::-1]    # Reversing the string sent in the request
+                                #
+if __name__ == "__main__":      #
+    main()                      #
+```
