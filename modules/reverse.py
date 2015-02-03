@@ -1,6 +1,9 @@
 import phyth
 
 def main():
+	phyth.start(function)
+
+def function():
 	try:
 		# dictionary of data sent in through api request
 		data = phyth.getData()
@@ -18,6 +21,7 @@ def main():
 		phyth.respond(reply_data, "")
 	except Exception:
 		phyth.respond("", "ERROR: reverse.py module failed")
+
 
 if __name__ == "__main__":
     main()
