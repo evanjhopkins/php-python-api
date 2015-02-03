@@ -6,7 +6,7 @@ def getData():
 	data = json.loads(json_data)
 	return data['data']
 
-def logError(error):
+def error(error_msg):
 	#causes response to be blank currently...
 	log = open('log.txt', 'w+')
 	log.write(error)

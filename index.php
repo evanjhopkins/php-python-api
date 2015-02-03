@@ -5,7 +5,36 @@ include 'phyth.php';
 <h1>Phyth</h1>
 <hr>
 
-<h3>Testing error handling</h3>
+<h3>PHP permissions test</h3>
+<table border="1">
+<?php 
+$response = exec("pwd");
+//currently this value is arbitrary 
+if($response == " "){
+	echo "<tr><td>Response:</td><td bgcolor='DE8686'>"."Failed"."</td></tr>"; 
+}else{
+	echo "<tr><td>Response:</td><td bgcolor='86DE8C'>"."Success: ".$response."</td></tr>"; 
+}
+?>
+</table>
+<hr>
+
+<h3>Argument buffer size test</h3>
+<table border="1">
+<tr><td>Command:</td><td>getconf ARG_MAX</td></tr>
+<?php 
+$response = exec("getconf ARG_MAX");
+//currently this value is arbitrary 
+if($response < 2097152){
+	echo "<tr><td>Response:</td><td bgcolor='DE8686'>".$response."</td></tr>"; 
+}else{
+	echo "<tr><td>Response:</td><td bgcolor='86DE8C'>".$response."</td></tr>"; 
+}
+?>
+</table>
+<hr>
+
+<h3>Module error handling test</h3>
 <table border="1">
 <tr><td>Request:</td><td>{"cmd":"reverse","data":"should fail"}</td></tr>
 <?php 
@@ -21,9 +50,25 @@ if($response_obj->error==""){
 </table>
 <hr>
 
-<h3>Testing reverse</h3>
+<h3>Global error handling test</h3>
 <table border="1">
-<tr><td>Request:</td><td>{"cmd":"reverse","data":{"string":"should throw error"}}</td></tr>
+<tr><td>Request:</td><td>{"cmd":"broken","data":"should fail"}</td></tr>
+<?php 
+$response = callPhyth('{"cmd":"broken","data":"should fail"}');
+$response = str_replace("'", '"', $response);
+$response_obj = json_decode($response);
+if($response_obj->error==""){
+	echo "<tr><td>Response:</td><td bgcolor='DE8686'>".$response."</td></tr>"; 
+}else{
+	echo "<tr><td>Response:</td><td bgcolor='86DE8C'>".$response."</td></tr>"; 
+}
+?>
+</table>
+<hr>
+
+<h3>Successful module test</h3>
+<table border="1">
+<tr><td>Request:</td><td>{"cmd":"reverse","data":{"string":"should reverse this"}}</td></tr>
 <?php 
 $response = callPhyth('{"cmd":"reverse","data":{"string":"should reverse this"}}');
 $response = str_replace("'", '"', $response);
