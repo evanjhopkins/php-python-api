@@ -1,6 +1,9 @@
 # Phyth (PHP & Python api framework)
 Phyth allows a core api to be written in python while using php to handle requests and can be set up in minutes
 
+# IPC Version
+This branch is makes use of inter-process communication rahter than sockets. As of now it is not working and in development.
+
 ### Why would I use this over Django or a straight PHP api?
 For most people PHP is a far from ideal language to work in. Django is great, but the set up & configuration time are quite substantial. In certain senarios, such as proof-of-concepts or programming competitions, simplicity and speed are more important than robustness. 
 
