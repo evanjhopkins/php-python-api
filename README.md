@@ -31,12 +31,8 @@ if __name__ == "__main__":
 ```
 
 ### Calling the API
-Calling the api is as simple as sending the request to www.[YOUR-DOMAIN].com/[WHERE-YOU-PUT_PHYTH]/phyth.php. As far as Phyth is concerned, there are only two required fields in the request. "cmd" is just the filename of your module minus the extension. "data" is whatever you want to pass on to the module. If your module doesn't need any data sent in, you don't even need this field. Phyth expects JSON in the following format:
+Calling the api is as simple as sending the request to www.[YOUR-DOMAIN].com/[WHERE-YOU-PUT_PHYTH]/phyth.php. As far as Phyth is concerned, there are only two required fields in the request. "function" is just the filename of your module minus the extension. "data" is whatever you want to pass on to the module. If your module doesn't need any data sent in, you don't even need this field.
 ```
-{                               |
-    "cmd":"reverse",            | The filename of the module being called determines the command name: reverse.py --> reverse
-    "data":{                    | "data" is whats forwarded to the module, the format and contents are up to you
-      "string":"phyth is cool"  |     In the case of the reverse module, this is the string to be reversed
-    }                           |
-}    
+reverse                      | Posted as 'function'
+{ "string": "reverse this" } | Posted as 'data'
 ```
