@@ -4,7 +4,10 @@ import json
 def getData():
 	json_data = sys.argv[1]
 	data = json.loads(json_data)
-	return data['data']
+	return data
+
+def getRawData():
+	return sys.argv[1]
 
 def error(error_msg):
 	#causes response to be blank currently...

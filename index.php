@@ -36,9 +36,9 @@ if($response < 2097152){
 
 <h3>Module error handling test</h3>
 <table border="1">
-<tr><td>Request:</td><td>{"cmd":"reverse","data":"should fail"}</td></tr>
+<tr><td>Request:</td><td>Function=> reverse, Data=> {"data":"should fail"}</td></tr>
 <?php 
-$response = callPhyth('{"cmd":"reverse","data":"should fail"}');
+$response = callPhyth("reverse", '{"bata":"should fail"}');
 $response = str_replace("'", '"', $response);
 $response_obj = json_decode($response);
 if($response_obj->error==""){
@@ -54,7 +54,7 @@ if($response_obj->error==""){
 <table border="1">
 <tr><td>Request:</td><td>{"cmd":"broken","data":"should fail"}</td></tr>
 <?php 
-$response = callPhyth('{"cmd":"broken","data":"should fail"}');
+$response = callPhyth("broken", '{"cmd":"broken","data":"should fail"}');
 $response = str_replace("'", '"', $response);
 $response_obj = json_decode($response);
 if($response_obj->error==""){
@@ -70,7 +70,7 @@ if($response_obj->error==""){
 <table border="1">
 <tr><td>Request:</td><td>{"cmd":"reverse","data":{"string":"should reverse this"}}</td></tr>
 <?php 
-$response = callPhyth('{"cmd":"reverse","data":{"string":"should reverse this"}}');
+$response = callPhyth("reverse", '{"string":"should reverse this"}');
 $response = str_replace("'", '"', $response);
 $response_obj = json_decode($response);
 if($response_obj->error!="" || $response_obj->data->new_string==""){
@@ -85,9 +85,9 @@ if($response_obj->error!="" || $response_obj->data->new_string==""){
 <a href="https://github.com/evanjhopkins/php-python-api">Github</a>
 </html>
 <?php
-function callPhyth($data_string){
+function callPhyth($function, $data){
 	$url = 'http://ec2-54-148-172-8.us-west-2.compute.amazonaws.com/phyth/phyth.php';
-	$data = array('data' => $data_string);
+	$data = array('data' => $data, 'function' => $function);
 	//use key 'http' even if you send the request to https://...
 	$options = array(
 	    'http' => array(
