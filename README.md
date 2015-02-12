@@ -31,8 +31,8 @@ if __name__ == "__main__":
 ```
 
 ### Calling the API
-Calling the api is as simple as sending the request to www.[YOUR-DOMAIN].com/[WHERE-YOU-PUT_PHYTH]/phyth.php. As far as Phyth is concerned, there are only two required fields in the request. "function" is just the filename of your module minus the extension. "data" is whatever you want to pass on to the module. If your module doesn't need any data sent in, you don't even need this field.
+Calling the api is as simple as sending the request to www.[YOUR-DOMAIN].com/[WHERE-YOU-PUT_PHYTH]/phyth.php. The only post data Phyth requires is "function". This should contain the filename of the api function you want to call without the extension (reverse.py => reverse). All other post data will be passed to the specified module. 
 ```
-reverse                      | Posted as 'function'
-{ "string": "reverse this" } | Posted as 'data'
+"reverse"          | Posted as 'function'
+"reverse this"     | Posted as 'string'
 ```
