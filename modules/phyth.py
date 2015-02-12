@@ -10,10 +10,11 @@ def getRawData():
 	return sys.argv[1]
 
 def error(error_msg):
-	#causes response to be blank currently...
-	log = open('log.txt', 'w+')
-	log.write(error)
-	log.close()
+	# causes response to be blank currently...
+	# log = open('log.txt', 'w+')
+	# log.write(error)
+	# log.close()
+	return
 
 def respond(data_dict, error):
 	reply_data = { 'data': data_dict,'error': error }
