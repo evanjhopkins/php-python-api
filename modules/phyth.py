@@ -10,8 +10,9 @@ def getRawData():
 	return sys.argv[1]
 
 def error(error_msg):
+	# causes response to be blank currently...
 	# log = open('log.txt', 'w+')
-	# log.write(error_msg)
+	# log.write(error)
 	# log.close()
 	return
 

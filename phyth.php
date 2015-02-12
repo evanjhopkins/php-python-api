@@ -1,9 +1,7 @@
 <?php
-if(isset($_POST['function'])){
-	echo apiCall($_POST['function'],"'".$_POST['data']."'");
-}else if(isset($_GET['function'])){
-	echo apiCall($_GET['function'],"'".$_GET['data']."'");
-}
+	$data = "'".json_encode(array_merge($_POST, $_FILES))."'";
+	//echo $data;
+	echo apiCall($_POST['function'], $data);
 
 function apiCall($function, $data){	
 	$cmd = "python modules/".$function.".py"." ".$data;

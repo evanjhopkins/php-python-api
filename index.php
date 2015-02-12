@@ -70,7 +70,7 @@ if($response_obj->error==""){
 <table border="1">
 <tr><td>Request:</td><td>{"cmd":"reverse","data":{"string":"should reverse this"}}</td></tr>
 <?php 
-$response = callPhyth("reverse", '{"string":"should reverse this"}');
+$response = callPhyth("reverse", '{"function":"reverse", "string":"should reverse this"}');
 $response = str_replace("'", '"', $response);
 $response_obj = json_decode($response);
 if($response_obj->error!="" || $response_obj->data->new_string==""){
@@ -87,7 +87,7 @@ if($response_obj->error!="" || $response_obj->data->new_string==""){
 <?php
 function callPhyth($function, $data){
 	$url = 'http://ec2-54-148-172-8.us-west-2.compute.amazonaws.com/phyth/phyth.php';
-	$data = array('data' => $data, 'function' => $function);
+	//$data = array('data' => $data, 'function' => $function);
 	//use key 'http' even if you send the request to https://...
 	$options = array(
 	    'http' => array(

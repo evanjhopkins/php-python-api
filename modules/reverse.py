@@ -9,8 +9,8 @@ def function():
 		data = phyth.getData()
 
 		# getting string to be reversed from data dictionary
-		string = data['string']
-
+		string = str(data['string'])
+		
 		# reversing string
 		string = string[::-1]
 
@@ -20,8 +20,7 @@ def function():
 		# send response
 		phyth.respond(reply_data, "")
 	except Exception:
-		phyth.respond("", "ERROR: reverse.py module failed")
-
+	 	phyth.respond("", "ERROR: reverse.py module failed")
 
 if __name__ == "__main__":
     main()
