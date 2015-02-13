@@ -24,7 +24,7 @@ def respond(data_dict, error):
 def start(func):
 	try:
 		func()
-		cleanTmpDir() # eventually need to clear tmp dir after script finishes
+		cleanTmpDir()
 	except Exception:
 		# when a module throws an error and does not handle it
 		respond("", "ERROR: Module failed; exception not handled by module")
@@ -44,8 +44,8 @@ def cleanTmpDir():
 	# Deletes all files in tmp dir after script completion
 	tmp_dir_path = os.getcwd()+"/tmp/"
 	file_names = os.listdir(tmp_dir_path)
-	for file in file_names:
-		# os.remove(file)
+	# for file in file_names: 
+		# os.remove(file) # this line is failing, likely due to permission conflict
 
 
 
