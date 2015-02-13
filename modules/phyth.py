@@ -27,5 +27,11 @@ def start(func):
 		# when a module throws an error and does not handle it
 		respond("", "ERROR: Module failed; exception not handled by module")
 
+def verifyFile(file_data):
+	if (file_data['error'] == 0 and file_data['size'] > 0):
+		return True
+	else:
+		return False
+
 
 
