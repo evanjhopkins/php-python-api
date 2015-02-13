@@ -24,16 +24,18 @@ def respond(data_dict, error):
 def start(func):
 	try:
 		func()
+		# clearTmpDir() # eventually need to clear tmp dir after script finishes
 	except Exception:
 		# when a module throws an error and does not handle it
 		respond("", "ERROR: Module failed; exception not handled by module")
 
 def verifyFile(file_data):
-	# verifies that the file has no errors (php) and has a at least one byte (php)
-	# verifies that the file exists in the phyth tmp dir (python)
-	
 	file_path = str(os.getcwd())+"/tmp/"+file_data['name']
-	if (file_data['error'] == 0 and file_data['size'] > 0 and os.path.isfile(file_path) ):
+	if (
+		file_data['error'] == 0 and # did php mark any errors?
+		file_data['size'] > 0 and # did php actually get a file i.e. does it have any bytes
+		os.path.isfile(file_path) # was the file moved to the phyth tmp dir?
+		):
 		return True
 	else:
 		return False
