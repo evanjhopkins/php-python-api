@@ -19,15 +19,15 @@ def error(error_msg):
 
 def respond(data_dict, error):
 	reply_data = { 'data': data_dict,'error': error }
-	print reply_data
+	print json.dumps(reply_data, separators=(',',':'))
 
 def start(func):
 	try:
 		func()
 		cleanTmpDir()
-	except Exception:
+	except Exception as e:
 		# when a module throws an error and does not handle it
-		respond("", "ERROR: Module failed; exception not handled by module")
+		respond("", {"msg":"ERROR: Module failed; exception not handled by module", "raw":str(e)})
 
 def verifyFile(file_data):
 	file_path = str(os.getcwd())+"/tmp/"+file_data['name']
