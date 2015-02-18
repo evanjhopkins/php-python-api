@@ -11,11 +11,9 @@ def getRawData():
 	return sys.argv[1]
 
 def error(error_msg):
-	# causes response to be blank currently...
-	# log = open('log.txt', 'w+')
-	# log.write(error)
-	# log.close()
-	return
+	# if causing errors, make sure web server user owns log.txt
+	with open("log.txt", "a") as myfile:
+		myfile.write(error_msg+"\n")
 
 def respond(data_dict, error):
 	reply_data = { 'data': data_dict,'error': error }
@@ -33,8 +31,8 @@ def verifyFile(file_data):
 	file_path = str(os.getcwd())+"/tmp/"+file_data['name']
 	if (
 		file_data['error'] == 0 and # did php mark any errors?
-		file_data['size'] > 0 and # did php actually get a file i.e. does it have any bytes
-		os.path.isfile(file_path) # was the file moved to the phyth tmp dir?
+		file_data['size'] > 0 and   # did php actually get a file i.e. does it have any bytes
+		os.path.isfile(file_path)   # was the file moved to the phyth tmp dir?
 		):
 		return True
 	else:
@@ -45,6 +43,7 @@ def cleanTmpDir():
 	tmp_dir_path = os.getcwd()+"/tmp/"
 	file_names = os.listdir(tmp_dir_path)
 	for file in file_names: 
+		error("File: "+file+" was deleted from tmp dir")
 		os.remove(tmp_dir_path+file)
 
 

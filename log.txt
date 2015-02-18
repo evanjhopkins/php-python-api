@@ -1,0 +1,4 @@
+helloappended textappended textappended text
+appended text
+appended text
+File: cover.jpg was deleted from tmp dir
