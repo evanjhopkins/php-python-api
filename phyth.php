@@ -6,12 +6,16 @@
 	if(isset($_POST['function'])){
 		$cleanPOST = array();
 		foreach ($_POST as $key => $postvar){
-			$cleanPOST[$key] = str_replace("'", "~", $postvar);
+			$cleanPOST[$key] = str_replace("'", "`", $postvar);
 		}
 		$data = "'".json_encode(array_merge($cleanPOST, $_FILES))."'";
 		echo apiCall($_POST['function'], $data);
 	}else if(isset($_GET['function'])){
-		$data = "'".json_encode(array_merge($_GET, $_FILES))."'";
+		$cleanGET = array();
+		foreach ($_GET as $key => $getvar){
+			$cleanGET[$key] = str_replace("'", "`", $getvar);
+		}
+		$data = "'".json_encode(array_merge($cleanGET, $_FILES))."'";
 		echo apiCall($_GET['function'], $data);
 	}
 
