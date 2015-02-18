@@ -44,8 +44,8 @@ def cleanTmpDir():
 	# Deletes all files in tmp dir after script completion
 	tmp_dir_path = os.getcwd()+"/tmp/"
 	file_names = os.listdir(tmp_dir_path)
-	# for file in file_names: 
-		# os.remove(file) # this line is failing, likely due to permission conflict
+	for file in file_names: 
+		os.remove(tmp_dir_path+file)
 
 
 
